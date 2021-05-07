@@ -2,11 +2,18 @@ language: ruby
 cache:
  - bundler
  - yarn
-bundler_args: --without production
+bundler_args: "--without production"
 rvm:
  - 3.0.0
 before_install:
- - export RAILS_ENV=test
  - gem install bundler:2.2.17
 script:
  - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: VKyPmcKFbEZue8wjZJZPSHVfAsWLd5GUn9g2K0ClTUb9kIwSYkHzZoTcr+BYZ/EfsMOsj7waDRWIZrRjs1fV3Rc0XegE4uT571FzZsMEns26Ars3qvaCslQj8PRXozvv+KejWbTQhgWcXsFdmihheSbvNOgSXInBWIGxcBmGI8SgfBTye9MdlptNyE6G+rDvHvloV22pvVaCG5qWQ/3xSi6BwNRhqX0PDdTNQVPxv9QbPmGUqYQUmwIrDAa7OfhttL3/D2Gh8+cgJZDVKKOG5/vTeYOPRcdXqWQW6PQztRcqqXzJOYwNe1lrXoF8UY7uo7AkKHd80k37wcebZCiEpckGig0EFgAuD4UKpLwJn12npSf7uEOvA9yGQM9tAynIHqxng+6f4XgMOK4AmFaAmWghotNxWYNhkEEPjmlATziBx1eN1EwqbMBIwSTXtS/nZ8XGu+Ie4iOkaRp4difANWhCFPKvjKaUrXs9ji406T13VQuBEJ4HJxswMpu2hcZ594X+Y59GtsKCs/wb9REELm8n64qEL1bwe0kz7yl/0yg8I4ivCJBxce03RqrtkiMoaPgkk104oq0BCOGVQOXyI9O51DdVGePFncBKfSueMJVJtcKDNqQxYF2GBxDwu6pekrsiuuJV7a621SyiT7beRKEaeP3jVxHgOgnbWUs+luI=
+  app: cs3300
+  run: rake db:migrate
+  on:
+    all_branches: true
