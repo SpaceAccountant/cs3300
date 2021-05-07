@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  add_flash_types :error
+#  add_flash_types :error
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
@@ -35,10 +35,10 @@ class ProjectsController < ApplicationController
             format.json { render json: @project.errors, status: :unprocessable_entity }
           end
         else
-          format.html { redirect_to new_project_path(@project), error: "Body can't be blank." }
+          format.html { redirect_to new_project_path(@project), alert: "Body can't be blank." }
         end
       else
-        format.html { redirect_to new_project_path(@project), error: "Title can't be blank." }
+        format.html { redirect_to new_project_path(@project), alert: "Title can't be blank." }
       end
     end
   end
@@ -56,10 +56,10 @@ class ProjectsController < ApplicationController
             format.json { render json: @project.errors, status: :unprocessable_entity }
           end
         else
-          format.html { redirect_to edit_project_path(@project), error: "Body can't be blank." }
+          format.html { redirect_to edit_project_path(@project), alert: "Body can't be blank." }
         end
       else
-        format.html { redirect_to edit_project_path(@project), error: "Title can't be blank." }
+        format.html { redirect_to edit_project_path(@project), alert: "Title can't be blank." }
       end
     end
   end
