@@ -60,6 +60,7 @@ group :test do
   # Use RSpec for testing
   gem 'mini_racer', '~> 0.4'
   gem 'rexml', '~> 3.2'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 5.0'
   # Use SimpleCov for testing coverage
   gem 'simplecov', require: false

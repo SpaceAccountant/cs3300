@@ -70,3 +70,10 @@ SimpleCov.start 'rails' do
   add_filter '/db/'
   add_filter '/spec/'
 end
+
+require 'devise'
+
+RSpec.configure do |config|
+    config.include Devise::Test::ControllerHelpers, :type => :controller
+    config.include FactoryBot::Syntax::Methods
+end
