@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  add_flash_types :error
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
@@ -24,12 +25,20 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: "Project was successfully created." }
-        format.json { render :show, status: :created, location: @project }
+      if verify_title
+        if verify_body
+          if @project.save
+            format.html { redirect_to @project, notice: "Project was successfully created." }
+            format.json { render :show, status: :created, location: @project }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @project.errors, status: :unprocessable_entity }
+          end
+        else
+          format.html { redirect_to new_project_path(@project), error: "Body can't be blank." }
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_project_path(@project), error: "Title can't be blank." }
       end
     end
   end
@@ -37,12 +46,20 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: "Project was successfully updated." }
-        format.json { render :show, status: :ok, location: @project }
+      if verify_title
+        if verify_body
+          if @project.update(project_params)
+            format.html { redirect_to @project, notice: "Project was successfully updated." }
+            format.json { render :show, status: :ok, location: @project }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: @project.errors, status: :unprocessable_entity }
+          end
+        else
+          format.html { redirect_to edit_project_path(@project), error: "Body can't be blank." }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_project_path(@project), error: "Title can't be blank." }
       end
     end
   end
@@ -65,5 +82,13 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:title, :body)
+    end
+
+    def verify_title
+      !(project_params[:title].nil? || project_params[:title].empty?)
+    end
+
+    def verify_body
+      !(project_params[:body].nil? || project_params[:body].empty?)
     end
 end
