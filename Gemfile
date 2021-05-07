@@ -56,6 +56,8 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   # Use RSpec for testing
+  gem 'mini_racer', '~> 0.4'
+  gem 'rexml', '~> 3.2'
   gem 'rspec-rails', '~> 5.0'
   # Use SimpleCov for testing coverage
   gem 'simplecov', require: false
