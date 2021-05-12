@@ -13,7 +13,7 @@ deploy:
   provider: heroku
   api_key:
     secure: IDA9X98Unu6OP904SPxRjz9NUNit3h1zaq/wIfS5wQP+RTd+xSa260J4nDYnLxZcTQbL7qHBU6j3UJ011s+dwC7nsw7lWXysS6s2DFbVVHzqOKoeBT27QiZwwgeUojDLTwLgnMhiDCYe3p3XlFTeKKhmqogacoaX1rVWji5d+zm83zEPpzJzKhRdjhCHPko6SQAMI7oriXk7ljUAyb7yRV0R9fHUm5pbkhPoYVBI9H/RRluhCEgDNYWqzrr5+chcfX5LG9rY+rVuy/0rQYFN0Xp9vxxDmKqTBmFcNYyv4FGDW2PH3Pwf/O2W5X/KI0NbR8Q2bsz6U+EZwS6goUoMjnnPGdOvFGy/bhuTY1yuJcBkpp/I0VVTmCcKuEPyDxhQ1nG0QDi3kz6ZmFa1C2rmiFNar0TDR0cwOT1v9jMkpOcZXESugxBszzcOK1PWjN9VUEV+Z+7H3wscjlnzYI5Ihve5BW7HoKF2goTjGAKO/8lsT8U0qXMPnCodXQ16a7zozMFQ3Rys7eVXpywh7CZCnrBeNRh56H2R/K/8w6C47vCBlZgpuCO6VF6ahWJbgXc+rm0EALAHZxvxUtxxwahJDl2cVdFU1CKqK+GpGTYqUhdjiCemf1H0zO5D8lRpiu3iLmxUVokbvf2peDibzLXGUyNpwTwGk9W5bI6coQ7nuCk=
-  app: cs3300
+  app: blooming-ridge-56374
   run: rake db:migrate
   on:
     all_branches: true
