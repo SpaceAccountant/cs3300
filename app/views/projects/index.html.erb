@@ -1,27 +1,47 @@
-<h1>Projects</h1>
+<div class="jumbotron">
+  <div>
+    <h1>About</h1>
+    <p>This is the portfolio of Jaiden Clark-Muth. A complete list of projects posted on this site can be viewed on the home page. Each project can be viewed individually. If you have an account then you may login and create, update, and delete projects.</p>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div>
+  <h1>Projects</h1>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.body %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% if user_signed_in? %>
+    <%= link_to 'New Project', new_project_path %>
+  <% end %>
 
-<br>
+  <% @projects.each do |project| %>
+    <div class="card my-3">
+      <div class="card-header">
+        <div>
+          <h3>
+            <%= project.title %>
+          </h3>
+        </div>
+        <div>
+          <div>
+            Posted on <%= project.created_at %>
+          </div>
+          <% if project.updated_at? && !(project.updated_at === project.created_at) %>
+            <div>
+              Edited on <%= project.updated_at %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to 'View', project %>
+          <% if user_signed_in? %>
+            | <%= link_to 'Edit', edit_project_path(project) %>
+            | <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body project-body">
+        <%= project.body %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'New Project', new_project_path %>
