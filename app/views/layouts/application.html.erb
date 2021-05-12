@@ -56,6 +56,13 @@
               <% end %>
                   <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
               </li>
+              <% if current_page?( new_user_registration_path ) %>
+                <li class="nav-item active">
+              <% else %>
+                <li class="nav-item">
+              <% end %>
+                  <%= link_to 'Signup', new_user_registration_path, class: 'nav-link' %>
+              </li>
             <% end %>
           </ul>
         </div>
